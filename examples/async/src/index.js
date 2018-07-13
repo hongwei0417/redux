@@ -7,14 +7,14 @@ import { createLogger } from 'redux-logger'
 import reducer from './reducers'
 import App from './containers/App'
 
-const middleware = [ thunk ]
+const middleware = [ thunk ] //將thunk加入陣列
 if (process.env.NODE_ENV !== 'production') {
-  middleware.push(createLogger())
+  middleware.push(createLogger()) //將createLogger也加入陣列
 }
 
 const store = createStore(
   reducer,
-  applyMiddleware(...middleware)
+  applyMiddleware(...middleware) //讓store使用middleware
 )
 
 render(

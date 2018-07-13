@@ -10,9 +10,9 @@ const AddTodo = ({ dispatch }) => {
       <form onSubmit={e => {
         e.preventDefault()
         if (!input.value.trim()) {
-          return
+          return;
         }
-        dispatch(addTodo(input.value))
+        dispatch(addTodo(input.value)) //發送一個新增的action
         input.value = ''
       }}>
         <input ref={node => input = node} />
@@ -24,4 +24,4 @@ const AddTodo = ({ dispatch }) => {
   )
 }
 
-export default connect()(AddTodo)
+export default connect()(AddTodo) //綁定store
