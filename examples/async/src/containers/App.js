@@ -6,7 +6,7 @@ import Picker from '../components/Picker'
 import Posts from '../components/Posts'
 
 class App extends Component {
-  static propTypes = {
+  static propTypes = {  //元件屬性規則
     selectedSubreddit: PropTypes.string.isRequired,
     posts: PropTypes.array.isRequired,
     isFetching: PropTypes.bool.isRequired,
@@ -14,19 +14,19 @@ class App extends Component {
     dispatch: PropTypes.func.isRequired
   }
 
-  componentDidMount() {
+  componentDidMount() { //元件安裝結束
     const { dispatch, selectedSubreddit } = this.props
     dispatch(fetchPostsIfNeeded(selectedSubreddit))
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps) { //元件收到屬性
     if (nextProps.selectedSubreddit !== this.props.selectedSubreddit) {
       const { dispatch, selectedSubreddit } = nextProps
       dispatch(fetchPostsIfNeeded(selectedSubreddit))
     }
   }
 
-  handleChange = nextSubreddit => {
+  handleChange = nextSubreddit => { 
     this.props.dispatch(selectSubreddit(nextSubreddit))
   }
 
@@ -34,8 +34,8 @@ class App extends Component {
     e.preventDefault()
 
     const { dispatch, selectedSubreddit } = this.props
-    dispatch(invalidateSubreddit(selectedSubreddit))
-    dispatch(fetchPostsIfNeeded(selectedSubreddit))
+    dispatch(invalidateSubreddit(selectedSubreddit)) //發出一個終止的動作
+    dispatch(fetchPostsIfNeeded(selectedSubreddit)) //發送使否要更新的動作
   }
 
   render() {
